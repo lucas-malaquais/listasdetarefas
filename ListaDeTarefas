@@ -1,0 +1,51 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class ListaDeTarefas {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<String> tarefas = new ArrayList<>();
+        int opcao;
+
+        do {
+            System.out.println("\n--- Gerenciador de Tarefas ---");
+            System.out.println("1. Adicionar Tarefa");
+            System.out.println("2. Visualizar Tarefas");
+            System.out.println("3. Remover Tarefa");
+            System.out.println("4. Sair");
+            System.out.print("Escolha uma opção: ");
+            opcao = scanner.nextInt();
+            scanner.nextLine(); // Consumir o newline
+
+            switch (opcao) {
+                case 1:
+                    System.out.println("Digite a tarefa:");
+                    String tarefa = scanner.nextLine();
+                    tarefas.add(tarefa);
+                    System.out.println("Tarefa adicionada!");
+                    break;
+                case 2:
+                    System.out.println("\n--- Suas Tarefas ---");
+                    for (int i = 0; i < tarefas.size(); i++) {
+                        System.out.println((i + 1) + ". " + tarefas.get(i));
+                    }
+                    break;
+                case 3:
+                    System.out.println("Digite o número da tarefa para remover:");
+                    int numeroTarefa = scanner.nextInt();
+                    if (numeroTarefa > 0 && numeroTarefa <= tarefas.size()) {
+                        tarefas.remove(numeroTarefa - 1);
+                        System.out.println("Tarefa removida!");
+                    } else {
+                        System.out.println("Número inválido.");
+                    }
+                    break;
+                case 4:
+                    System.out.println("Saindo do programa...");
+                    break;
+                default:
+                    System.out.println("Opção inválida!");
+            }
+        } while (opcao != 4);
+    }
+}
